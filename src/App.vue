@@ -1,13 +1,34 @@
 <template>
-  <user-data @user-data="user - data"></user-data>
-  <active-user></active-user>
+  <user-data @set-data="setUserData"></user-data>
+  <active-user :username="user.name" :userage="user.age"></active-user>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      user: {
+        name: "",
+        age: 0,
+      },
+    };
+  },
+  methods: {
+    setUserData(name, age) {
+      this.user = {
+        name: name,
+        age: +age,
+      };
+    },
+  },
+};
 </script>
 
 <style>
+html {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
 .info {
   margin: 2rem auto;
   max-width: 40rem;

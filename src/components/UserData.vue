@@ -1,30 +1,31 @@
 <template>
   <section class="info">
-    <form>
+    <form @submit.prevent="submitData">
       <label>Name: </label>
       <input type="text" v-model="name" />
       <br />
       <br />
       <label>Age: </label>
-      <input type="number" v-model="age" />
+      <input type="text" v-model="age" />
+      <br />
+      <br />
+      <button>Set User Data</button>
     </form>
   </section>
 </template>
 
 <script>
 export default {
+  emits: ["set-data"],
   data() {
     return {
       name: "",
-      age: null,
+      age: "",
     };
   },
   methods: {
-    setName(event) {
-      this.name = event.target.value;
-    },
-    setAge(event) {
-      this.age = event.target.value;
+    submitData() {
+      this.$emit("set-data", this.name, this.age);
     },
   },
 };
